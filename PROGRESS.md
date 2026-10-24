@@ -23,6 +23,7 @@
   - 清理舊版 16:9 橫式暫存備份（釋放 843 MB 磁碟空間）。
   - 統一範本與專案的 `make_film.py`（直式/橫式自適應、配樂長度不足自動延伸、剪輯點對齊 1/24 秒）。
   - 補強 `.gitignore`（忽略快取、大檔、備份與壓縮包）。
+- 2026-10-24：**個人 GitHub 倉庫建立與同步**：將專案完整推送至 [erniesu8090-beep/AI-Moive-ByColab](https://github.com/erniesu8090-beep/AI-Moive-ByColab)，並將 `origin` 設為該倉庫（原母專案保留為 `upstream_colab`）。
 
 ## 待使用者決定
 1. 第二部全新影片的主題與劇本規劃（可使用 `shanshiba-drama` 技能與 `codex-imagegen-bridge` 快速建置角色與分鏡）。
@@ -36,3 +37,4 @@
 ## 修訂紀錄
 - 2026-10-23｜home｜下載專案、修補 Colab CLI、打通第一部橫式短片。
 - 2026-10-24｜home｜同步 4 個最新 Commits、解鎖 Codex 生圖技能、配置 Breeze TTS 2、重構直式 9:16 管線、產出正式 1080×1920 直式成片並安全關機；完成專案精簡與冗餘清理。
+- 2026-10-24｜home｜設定遠端 origin 為 erniesu8090-beep/AI-Moive-ByColab 並完成初始推送。
