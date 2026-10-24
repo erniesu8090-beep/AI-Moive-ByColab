@@ -1,0 +1,455 @@
+{
+ "_comment": "山獅霸短劇《加八獎八的誘惑》（片長約75秒，14鏡）。講述高雄宣布颱風假時，煉油廠常日班工程師與輪班同仁的爆笑悲喜兩樣情。",
+ "title": "加八獎八的誘惑",
+ "repo_dir": "../..",
+ "voice_mode": "h3_ref",
+ "aspect": "9:16",
+ "cine": "A cinematic film still from a realistic Taiwanese workplace drama, shot on Kodak Vision3 500T film with an anamorphic 50mm lens at f/2. Industrial indoor fluorescent lighting mixed with cool stormy rainlight pouring in through windows, moody contrast, warm amber and cool teal grading, shallow depth of field, subtle 35mm grain. Full-frame image, NO black letterbox bars. ",
+ "set_sentence": "Use the industrial room from <image{n}> as the set, but only as the physical location.",
+ "frame_suffix": " Only the specified characters in focus. No text, no watermark, no captions.",
+ "h3": {
+  "style": "a realistic cinematic live-action Taiwanese film, 35mm grain, industrial lighting, stormy weather",
+  "setting": "a Taiwanese oil refinery plant during a stormy typhoon day",
+  "soundscape": "Low hum of industrial monitors and air conditioning, distant howling typhoon wind and heavy rain outside.",
+  "camera": "The camera holds a static shot on a tripod.",
+  "constraints": [
+   "No new people appear that are not already in the first frame; no captions and no readable text.",
+   "The camera stays locked on the tripod; no zoom, no pan.",
+   "LOCKED-OFF STATIC CAMERA on a tripod."
+  ]
+ },
+ "chars": {
+  "chen": {
+   "name": "陳工",
+   "look": "Chen, a 32-year-old Taiwanese plant process engineer with short black hair, rectangular black glasses, wearing a dark-blue industrial plant jumpsuit with ID badge clipped on chest, slightly disheveled and tired expression",
+   "voice_design": "A fast-talking, stressed 32-year-old Taiwanese male engineer, articulate with a clear natural Taiwanese Mandarin accent.",
+   "voice_sample": "張董！明天全部停工！防颱固定、盲封復原，今晚一定要搞定！",
+   "h3_voice": "a fast-talking stressed adult Taiwanese male voice",
+   "edge_voice": "zh-TW-YunJheNeural",
+   "sub_color": "&H00A0E8FF"
+  },
+  "li": {
+   "name": "老李",
+   "look": "Lao Li, a 50-year-old experienced Taiwanese refinery shift operator, weathered tanned face with a warm sly grin, crow's feet around laughing eyes, wearing a yellow hard hat, safety goggles hanging around his neck, and a faded navy-blue work jacket",
+   "voice_design": "A seasoned 50-year-old Taiwanese blue-collar plant veteran, deep, relaxed, confident and humorous voice, natural Taiwanese Mandarin accent.",
+   "voice_sample": "放假那是常日班的事。我們輪班的，這叫加八獎八發財日！上一天抵三天！",
+   "h3_voice": "a deep, relaxed mature Taiwanese male voice",
+   "edge_voice": "zh-TW-YunXiNeural",
+   "sub_color": "&H00FFE6B4"
+  },
+  "qiang": {
+   "name": "阿強",
+   "look": "Ah Qiang, a 25-year-old young Taiwanese refinery rookie operator, round youthful face, soaking wet hair, wearing a bright yellow raincoat with the hood pulled back, a yellow hard hat, clutching a brown cardboard box of instant noodles",
+   "voice_design": "An energetic 25-year-old Taiwanese young man, breathless, loud and enthusiastic, natural Taiwanese Mandarin accent.",
+   "voice_sample": "報告班長！我涉水過來的！誰都不能阻止我拿加八獎八！",
+   "h3_voice": "an energetic breathless young Taiwanese male voice",
+   "edge_voice": "zh-TW-HsiaoChenNeural",
+   "sub_color": "&H0080FF80"
+  }
+ },
+ "masters": {
+  "office": "A cinematic wide film still, shot on Kodak Vision3 500T film with an anamorphic lens. Inside an engineering office in a Taiwanese industrial plant. Messy desks with desktop computers, stacked folders, hard hats on cabinets, large window on the left showing stormy rain and grey typhoon clouds. No people. Clean composition, realistic fluorescent lighting. No text, no watermark, no captions.",
+  "control": "A cinematic wide film still, shot on Kodak Vision3 500T film with an anamorphic lens. Inside the central control room of a Taiwanese oil refinery plant. A long curved console desk with multiple glowing computer monitors showing pipeline schematics and dials, swivel office chairs, stainless steel vacuum flasks on the desk, high ceiling with soft panels. No people. No text, no watermark, no captions.",
+  "door": "A cinematic wide film still. Inside the entrance corridor of the refinery central control room, looking at heavy double industrial metal doors with small glass inspection windows. Grey tiled floor, stormy raindrops visible on exterior glass. No people. No text, no watermark."
+ },
+ "shots": [
+  {
+   "id": "S01",
+   "refs": [],
+   "scene": [
+    "office",
+    [
+     0.2,
+     0.1,
+     0.9,
+     0.8
+    ]
+   ],
+   "dur": 4.5,
+   "line": null,
+   "frame": "Close-up shot: a large wall-mounted flat-screen TV in the office, displaying a news broadcast screen with a red banner bar across the bottom. Next to the TV, a desktop calendar is visible.",
+   "action": "The camera holds on the TV screen displaying emergency weather alert graphics while red banners flash.",
+   "cut_in": 0.0,
+   "tail": 0.8
+  },
+  {
+   "id": "S02",
+   "refs": [
+    "chen"
+   ],
+   "scene": [
+    "office",
+    [
+     0.1,
+     0.0,
+     0.9,
+     0.8
+    ]
+   ],
+   "dur": 5.0,
+   "line": {
+    "who": "chen",
+    "text": "爽啦！週五颱風假，直接連放四天！",
+    "at": 0.6
+   },
+   "frame": "Medium shot waist-up: the man with glasses from <image1> sits behind an office desk in the office from <image2>, slapping both hands down on the desk excitedly, leaning forward with a joyful, ecstatic smile looking straight ahead.",
+   "action": "The engineer slaps the desk with excitement and cheers joyfully about the four-day holiday.",
+   "cut_in": 0.3,
+   "tail": 0.8
+  },
+  {
+   "id": "S03",
+   "refs": [
+    "chen"
+   ],
+   "scene": [
+    "office",
+    [
+     0.2,
+     0.2,
+     0.8,
+     0.9
+    ]
+   ],
+   "dur": 4.0,
+   "line": null,
+   "frame": "Close-up on the cluttered office desk from <image2>: a smartphone lies on the desk vibrating violently with incoming call light, beside two office landline desk phones whose red lights are blinking rapidly. The hands of the man from <image1> hover above them in shock.",
+   "action": "Multiple phones on the desk ring and vibrate frantically; the engineer's hands hesitate in shock without speaking.",
+   "cut_in": 0.0,
+   "cut_out": "full"
+  },
+  {
+   "id": "S04",
+   "refs": [
+    "chen"
+   ],
+   "scene": [
+    "office",
+    [
+     0.1,
+     0.0,
+     0.8,
+     0.8
+    ]
+   ],
+   "dur": 7.0,
+   "line": {
+    "who": "chen",
+    "text": "張董！明天全部停工！防颱固定、盲封復原，今晚一定要搞定！",
+    "at": 0.6
+   },
+   "frame": "Medium shot: the man with glasses from <image1> standing in the office from <image2>, holding an office phone receiver clamped between ear and shoulder, waving a clipboard frantically while pressing buttons on an office printer, stressed and sweating.",
+   "action": "The engineer speaks rapidly into the phone with urgency, gesturing with a pen, completely swamped with contractor calls.",
+   "cut_in": 0.2,
+   "tail": 1.0
+  },
+  {
+   "id": "S05",
+   "refs": [
+    "li"
+   ],
+   "scene": [
+    "control",
+    [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   ],
+   "dur": 4.5,
+   "line": null,
+   "frame": "Wide shot: the quiet, luminous central control room from <image2>. The veteran operator with a yellow hard hat from <image1> sits peacefully in a swivel chair before the massive array of glowing monitors, holding a metal thermos mug.",
+   "action": "The operator takes a slow, relaxed sip from his metal thermos in the quiet control room, completely calm.",
+   "cut_in": 0.0,
+   "cut_out": "full"
+  },
+  {
+   "id": "S06",
+   "refs": [
+    "li"
+   ],
+   "scene": [
+    "control",
+    [
+     0.2,
+     0.1,
+     0.8,
+     0.8
+    ]
+   ],
+   "dur": 7.0,
+   "line": {
+    "who": "li",
+    "text": "放假？那是常日班的事。我們輪班的，這叫加八獎八發財日！",
+    "at": 0.6
+   },
+   "frame": "Medium close-up: the 50-year-old operator from <image1> sitting in front of control room monitors from <image2>, lowering his thermos, looking toward the camera with a triumphant, knowing grin on his weathered face.",
+   "action": "The veteran operator chuckles smugly, tapping the desk lightly as he speaks with pride.",
+   "cut_in": 0.3,
+   "tail": 1.0
+  },
+  {
+   "id": "S07",
+   "refs": [
+    "li"
+   ],
+   "scene": [
+    "control",
+    [
+     0.25,
+     0.15,
+     0.75,
+     0.85
+    ]
+   ],
+   "dur": 6.0,
+   "line": {
+    "who": "li",
+    "text": "上一天抵三天，風雨再大，我爬都要爬來接班！",
+    "at": 0.5
+   },
+   "frame": "Close-up: the operator from <image1> holding an office desktop calculator in one hand, punching keys rapidly with his finger, grinning widely with eyes shining with satisfaction.",
+   "action": "The operator taps the calculator emphatically, nodding his head with firm conviction.",
+   "cut_in": 0.2,
+   "tail": 0.8
+  },
+  {
+   "id": "S08",
+   "refs": [
+    "li"
+   ],
+   "scene": [
+    "control",
+    [
+     0.1,
+     0.1,
+     0.8,
+     0.8
+    ]
+   ],
+   "dur": 6.0,
+   "line": {
+    "who": "li",
+    "text": "等等……現在十一點五十五分，阿強怎麼還沒來？",
+    "at": 0.6
+   },
+   "frame": "Medium shot: the operator from <image1> turning his head to look at his wrist watch, then gazing at the dark rainy window. His smile suddenly vanishes, replaced by a tense, nervous expression.",
+   "action": "The operator looks at his watch, taps the glass face, and glances nervously around the empty room.",
+   "cut_in": 0.3,
+   "tail": 1.0
+  },
+  {
+   "id": "S09",
+   "refs": [
+    "li"
+   ],
+   "scene": [
+    "control",
+    [
+     0.2,
+     0.1,
+     0.8,
+     0.8
+    ]
+   ],
+   "dur": 7.0,
+   "line": {
+    "who": "li",
+    "text": "接班人沒來，交班人不能走！阿強你千萬不要被路樹卡在路上啊！",
+    "at": 0.6
+   },
+   "frame": "Tight close-up: the operator from <image1> clutching both sides of his hard hat with wide panicked eyes, cold sweat visible on his forehead, muttering prayerfully toward the ceiling.",
+   "action": "The operator panics, clasping his hands in desperate prayer as fear of working a double shift strikes him.",
+   "cut_in": 0.2,
+   "tail": 1.0
+  },
+  {
+   "id": "S10",
+   "refs": [
+    "qiang"
+   ],
+   "scene": [
+    "door",
+    [
+     0.1,
+     0.0,
+     0.9,
+     1.0
+    ]
+   ],
+   "dur": 4.5,
+   "line": null,
+   "frame": "Medium wide shot: the heavy double metal doors from <image2> suddenly flung wide open. Gusts of wind blow in. Standing in the doorway is the young man from <image1> wearing a dripping yellow raincoat and hard hat, clutching a brown box.",
+   "action": "The heavy door swings open with a bang; wind and rain gust inward as the soaked rookie stands triumphantly in the doorway.",
+   "cut_in": 0.0,
+   "cut_out": "full"
+  },
+  {
+   "id": "S11",
+   "refs": [
+    "qiang"
+   ],
+   "scene": [
+    "door",
+    [
+     0.2,
+     0.1,
+     0.8,
+     0.8
+    ]
+   ],
+   "dur": 7.0,
+   "line": {
+    "who": "qiang",
+    "text": "報告班長！我涉水過來的！誰都不能阻止我拿加八獎八！",
+    "at": 0.5
+   },
+   "frame": "Medium close-up: the young man from <image1> with rainwater dripping from his chin, pulling off his raincoat hood, raising a whole box of instant noodles high with both hands, shouting with bright heroic determination.",
+   "action": "The rookie hoists the instant noodle box like a trophy, grinning proudly through the rain dripping down his face.",
+   "cut_in": 0.2,
+   "tail": 1.0
+  },
+  {
+   "id": "S12",
+   "refs": [
+    "li"
+   ],
+   "scene": [
+    "control",
+    [
+     0.1,
+     0.1,
+     0.9,
+     0.8
+    ]
+   ],
+   "dur": 6.0,
+   "line": {
+    "who": "li",
+    "text": "好小子！泡麵拿去泡，今晚我們守護高雄的油槽！",
+    "at": 0.6
+   },
+   "frame": "Medium shot: the veteran operator from <image1> exhaling a massive sigh of relief, patting the shoulder of the dripping rookie standing next to him, smiling warmly.",
+   "action": "The veteran slaps the rookie on the back affectionately, giving a confident thumbs up.",
+   "cut_in": 0.3,
+   "tail": 0.8
+  },
+  {
+   "id": "S13",
+   "refs": [
+    "chen"
+   ],
+   "scene": [
+    "door",
+    [
+     0.1,
+     0.1,
+     0.9,
+     0.9
+    ]
+   ],
+   "dur": 7.5,
+   "line": {
+    "who": "chen",
+    "text": "廠長說……承攬商走光了，常日班工程師……今晚全體留守……",
+    "at": 0.7
+   },
+   "frame": "Medium shot in the doorway of <image2>: the engineer from <image1> standing drenched with rain, holding a dripping stack of paper binders and safety plans, dark circles under his glasses, looking utterly defeated and exhausted.",
+   "action": "The engineer slumps his shoulders, clutching the soggy paperwork, speaking in a hollow, exhausted daze.",
+   "cut_in": 0.3,
+   "tail": 1.0
+  },
+  {
+   "id": "S14",
+   "refs": [
+    "li"
+   ],
+   "scene": [
+    "control",
+    [
+     0.1,
+     0.1,
+     0.85,
+     0.85
+    ]
+   ],
+   "dur": 6.5,
+   "line": {
+    "who": "li",
+    "text": "陳工，看開點。歡迎加入加八獎八的行列！",
+    "at": 0.5
+   },
+   "frame": "Medium close-up: the veteran operator from <image1> stepping forward, handing a packet of instant noodles directly into the camera/engineer with a broad, empathetic, humorous grin.",
+   "action": "The veteran thrusts a packet of noodles forward with a consoling chuckle, freezing in a comedy freeze-frame.",
+   "cut_in": 0.3,
+   "cut_out": "full"
+  }
+ ],
+ "seeds": {
+  "char_chen": 101,
+  "char_li": 202,
+  "char_qiang": 303,
+  "master_office": 1001,
+  "master_control": 2002,
+  "master_door": 3003,
+  "h3_S11": 7711,
+  "h3_S14": 8814
+ },
+ "music": {
+  "caption": "Genre: upbeat lively workplace comedy film score, purely instrumental, fast comedic strings, bouncy pizzicato, quirky bassoon, cheeky brass, building up suspense and releasing into triumphant joy. BPM 110, key F major.\nVocal: NONE. No singing, no humming, no choir.\nArrangement: pizzicato cello, playful xylophone, light horns, energetic brushed snare.",
+  "seeds": [
+   11,
+   42,
+   88
+  ]
+ },
+ "mix": {
+  "say_lead": 0.2,
+  "default_tail": 0.6,
+  "music_under_lines": 0.25,
+  "music_bed_rms": 0.035,
+  "target_lufs": -15.5
+ },
+ "ending": {
+  "closeups": [
+   "S02",
+   "S06",
+   "S11",
+   "S14"
+  ],
+  "header": "本片使用的 AI 工具（Google Colab 雲端執行）",
+  "card_dur": 3.0,
+  "title_dur": 3.5,
+  "cards": [
+   [
+    [
+     "MiniMax H3",
+     "影片生成（Colab G4）"
+    ],
+    [
+     "Qwen-Image 2.1／Edit",
+     "角色與首幀生成"
+    ],
+    [
+     "MiniMax-Music3",
+     "配樂生成"
+    ]
+   ],
+   [
+    [
+     "Breeze TTS 2",
+     "角色聲音設計"
+    ],
+    [
+     "faster-whisper・BS-RoFormer",
+     "聽寫校對／配樂分離"
+    ],
+    [
+     "本片畫面、配音與配樂皆由 AI 生成",
+     ""
+    ]
+   ]
+  ]
+ }
+}

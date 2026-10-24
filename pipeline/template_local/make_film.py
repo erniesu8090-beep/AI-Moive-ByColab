@@ -34,6 +34,25 @@ FILM = HERE / (ARGS[ARGS.index("--film") + 1] if "--film" in ARGS else "film.jso
 CFG = json.loads(FILM.read_text(encoding="utf-8"))
 OUT = HERE / "out"; OUT.mkdir(exist_ok=True)
 REPO = (HERE / CFG.get("repo_dir", "../..")).resolve()
+ASPECT = str(CFG.get("aspect", "9:16")).strip().lower()
+IS_PORTRAIT = ASPECT in ("9:16", "portrait", "vertical", "直式")
+
+if IS_PORTRAIT:
+    H3_SIZE = [768, 1344]
+    SCALE_1080 = "1080:1920"
+    SCALE_720 = "720:1280"
+    PLAY_RES_X, PLAY_RES_Y = 1080, 1920
+    SUB_FONT_SIZE = 48
+    SUB_MARGIN_V = 220
+    SUB_MARGIN_LR = 60
+else:
+    H3_SIZE = [1344, 768]
+    SCALE_1080 = "1920:1080"
+    SCALE_720 = "1280:720"
+    PLAY_RES_X, PLAY_RES_Y = 1920, 1080
+    SUB_FONT_SIZE = 58
+    SUB_MARGIN_V = 70
+    SUB_MARGIN_LR = 60
 T = Path(os.environ.get("AI_TOOLS", r"C:\AI\tools"))
 PYH3 = os.environ.get("PY_H3", r"C:\AI\H3\venv\Scripts\python.exe")
 PYV = os.environ.get("PY_VOICE", r"C:\AI\Voice\venv\Scripts\python.exe")
@@ -214,7 +233,9 @@ def frames():
                         for i, k in enumerate(s["refs"], 1))
         set_s = (" " + CFG["set_sentence"].format(n=len(s["refs"]) + 1)) if s.get("scene") else ""
         p = keep + set_s + " New photo: " + CFG["cine"] + s["frame"] + CFG.get("frame_suffix", " No text, no watermark, no captions.")
-        cmd = [PYH3, T / "gen_image.py", "--model", "qwen-edit", "--width", "1344", "--height", "768", "--prompt", p,
+        f_w = "768" if IS_PORTRAIT else "1344"
+        f_h = "1344" if IS_PORTRAIT else "768"
+        cmd = [PYH3, T / "gen_image.py", "--model", "qwen-edit", "--width", f_w, "--height", f_h, "--prompt", p,
                "--seed", seed("frame_" + s["id"], 5101), "--prefix", f"film/{s['id']}", "--out", "first"]
         for k in s["refs"]:
             cmd += ["--ref", OUT / "chars" / f"{k}.png"]
@@ -231,7 +252,7 @@ def sheet(files, dst, cols=3):
     fs = [p for p in files if Path(p).exists()]
     if not fs:
         return
-    W, H = 672, 384; rows = (len(fs) + cols - 1) // cols
+    W, H = (384, 672) if IS_PORTRAIT else (672, 384); rows = (len(fs) + cols - 1) // cols
     im = Image.new("RGB", (W * cols, H * rows)); f = ImageFont.truetype(font("jhbd"), 28)
     for i, p in enumerate(fs):
         t = Image.open(p).convert("RGB").resize((W, H)); ImageDraw.Draw(t).text((8, 6), Path(p).stem, font=f, fill=(255, 255, 0), stroke_width=3, stroke_fill=0)
@@ -307,7 +328,8 @@ def shot_secs(s, picks):
 
 def h3_spec(s, secs, dialogue):
     h = CFG["h3"]
-    return dict(duration=round(secs - 0.02, 3), size=[1344, 768], seed=seed("h3_" + s["id"], h.get("default_seed", 20261007)), steps=14, draft=True,
+    size = s.get("size", h.get("size", H3_SIZE))
+    return dict(duration=round(secs - 0.02, 3), size=size, seed=seed("h3_" + s["id"], h.get("default_seed", 20261007)), steps=14, draft=True,
                 style=h["style"], setting=h["setting"], first_frame=str(OUT / "first" / f"{s['id']}.png"),
                 subjects=[dict(key=k, desc=CHARS[k]["look"], voice=CHARS[k]["h3_voice"]) for k in s["refs"]],
                 shots=[dict(camera=s.get("camera", h.get("camera", "The camera holds a static shot on a tripod.")), action=s["action"], dialogue=dialogue)],
@@ -507,7 +529,26 @@ def music():
         if d >= e["total"] and (best is None or ratio < best[0]):
             best = (ratio, next(sd.glob("*Instrumental*.wav")))
     if best is None:
-        raise SystemExit("沒有一首配樂夠長：把 music.seeds 換掉再跑 music")
+        # 沒有單一首夠長，挑人聲殘留最低的音軌自動循環延伸
+        candidates = []
+        for sd_ in m.get("seeds", [7, 23, 51]):
+            sd = md / f"s{sd_}"
+            ins_files = list(sd.glob("*Instrumental*.wav"))
+            if not ins_files:
+                continue
+            voc = load(next(sd.glob("*Vocals*.wav")))
+            ins = load(ins_files[0])
+            ratio = float(np.sqrt((voc ** 2).mean()) / (np.sqrt((ins ** 2).mean()) + 1e-9))
+            candidates.append((ratio, ins_files[0]))
+        if not candidates:
+            raise SystemExit("找不到配樂檔案：請重新跑 music 階段")
+        candidates.sort(key=lambda x: x[0])
+        best_ratio, best_file = candidates[0]
+        loop_out = md / "music_looped.wav"
+        target_dur = e["total"] + 5
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-stream_loop", "-1", "-i", str(best_file), "-t", str(target_dur), str(loop_out)], check=True)
+        best = (best_ratio, loop_out)
+        print(f"[music] 自動循環延伸最純配樂 ({best_file.parent.name}) 至 {target_dur} 秒", flush=True)
     (OUT / "post" / "music_pick.json").write_text(json.dumps(dict(file=str(best[1]), vocal_ratio=best[0]), ensure_ascii=False), encoding="utf-8")
 
 
@@ -532,7 +573,7 @@ def ending():
         header = "本片使用的 AI 工具（" + ("在 Google Colab 執行" if os.name != "nt" else
                                        "影片在本機與 Google Colab 生成" if H3_BACKEND == "both" else "影片在 Google Colab 生成") + "）"
     cfg = {"_base": str(ed), "title": e.get("title", CFG["title"]), "header": header, "card_dur": e.get("card_dur", 3.3),
-           "title_dur": e.get("title_dur", 7.5), "out": "ending.mp4", "cards": cards}
+           "title_dur": e.get("title_dur", 7.5), "out": "ending.mp4", "cards": cards, "aspect": ASPECT}
     (ed / "config.json").write_text(json.dumps(cfg, ensure_ascii=False, indent=1), encoding="utf-8")
     run([PYH3, REPO / "templates" / "ending" / "render_ending.py", ed / "config.json"])
 
@@ -562,7 +603,7 @@ def cut():
             run([PYH3, T / "upscale_vsr.py", "--source", src, "--output", v])
         p = seg / f"{r['id']}.mp4"
         run(["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{r['src_in']:.3f}", "-i", v, "-frames:v", str(round(r["dur"] * FPS)), "-an",
-             "-vf", "scale=1920:1080:flags=lanczos,fps=24,format=yuv420p", "-c:v", "libx264", "-crf", "14", "-preset", "medium", p])
+             "-vf", f"scale={SCALE_1080}:flags=lanczos,fps=24,format=yuv420p", "-c:v", "libx264", "-crf", "14", "-preset", "medium", p])
         parts.append(p)
     if CFG.get("ending"):
         parts.append(OUT / "ending" / "ending.mp4")
@@ -599,11 +640,11 @@ def cut():
     run(["ffmpeg", "-y", "-loglevel", "error", "-i", raw, "-af", f"volume={gain:.2f}dB,alimiter=limit=0.78:level=false:attack=2:release=80", "-ar", str(SR),
          post / "mix.wav"])
     # 字幕（ASS，依說話者上色，放大到 1080p 之後才燒）
-    hdr = ("[Script Info]\nScriptType: v4.00+\nPlayResX: 1920\nPlayResY: 1080\n\n[V4+ Styles]\n"
+    hdr = (f"[Script Info]\nScriptType: v4.00+\nPlayResX: {PLAY_RES_X}\nPlayResY: {PLAY_RES_Y}\n\n[V4+ Styles]\n"
            "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, "
            "Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding\n")
     for k, c in CHARS.items():
-        hdr += f"Style: {k},{SUB_FONT_NAME},58,{c.get('sub_color', '&H00FFFFFF')},&H000000FF,&H00101010,&H80000000,-1,0,0,0,100,100,1,0,1,4,1,2,60,60,70,1\n"
+        hdr += f"Style: {k},{SUB_FONT_NAME},{SUB_FONT_SIZE},{c.get('sub_color', '&H00FFFFFF')},&H000000FF,&H00101010,&H80000000,-1,0,0,0,100,100,1,0,1,4,1,2,{SUB_MARGIN_LR},{SUB_MARGIN_LR},{SUB_MARGIN_V},1\n"
     ev = "\n[Events]\nFormat: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n"
     caps = sorted([(l, r) for r in e["shots"] for l in r["lines"]], key=lambda x: x[0]["film_start"])
     for i, (l, r) in enumerate(caps):
@@ -617,7 +658,7 @@ def cut():
     run(["ffmpeg", "-y", "-loglevel", "error", "-i", "post/video.mp4", "-i", "post/mix.wav", "-vf", "subtitles=post/subs.ass", "-map", "0:v", "-map", "1:a",
          "-c:v", "libx264", "-crf", "16", "-preset", "slow", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "256k", "-movflags", "+faststart", "-shortest",
          "cut/film_1080p.mp4"])
-    run(["ffmpeg", "-y", "-loglevel", "error", "-i", OUT / "cut" / "film_1080p.mp4", "-vf", "scale=1280:720", "-c:v", "libx264", "-crf", "26",
+    run(["ffmpeg", "-y", "-loglevel", "error", "-i", OUT / "cut" / "film_1080p.mp4", "-vf", f"scale={SCALE_720}", "-c:v", "libx264", "-crf", "26",
          "-c:a", "aac", "-b:a", "128k", OUT / "cut" / "film_720p_phone.mp4"])
     print(f"成片 out/cut/film_1080p.mp4（{vtotal:.2f} 秒）", flush=True)
 

@@ -99,7 +99,12 @@ def repo_bundle(full=False):
     with tarfile.open(tmp, "w:gz") as t:
         for p in parts:
             if (REPO / p).exists():
-                t.add(REPO / p, arcname=p, filter=lambda ti: None if any(x in ti.name for x in ("/out/", "__pycache__", "smoke_out")) else ti)
+                def _filter(ti):
+                    n = ti.name.replace("\\", "/")
+                    if any(x in n for x in ("/out/", "__pycache__", "smoke_out", ".git", "backups", "out_")) or n.endswith("/out"):
+                        return None
+                    return ti
+                t.add(REPO / p, arcname=p, filter=_filter)
     return tmp
 
 
@@ -317,7 +322,7 @@ def cmd_film(a):
     tmp = Path(tempfile.mkdtemp()) / "film.zip"
     with zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED) as z:
         for f in fd.rglob("*"):
-            if f.is_file() and "__pycache__" not in f.parts:
+            if f.is_file() and "__pycache__" not in f.parts and not any(p in f.parts for p in ("h3", "music")):
                 z.write(f, f.relative_to(fd).as_posix())
     print(f"[film] 上傳 {rel}（{tmp.stat().st_size / 1e6:.1f} MB）…", flush=True)
     upload(a.name, tmp, "/content/film.zip")

@@ -1,8 +1,8 @@
-"""《山獅霸的多重宇宙》頻道片尾範本（2026-09-30，阿福〈三個絕招〉定稿使用的版本）
+"""《山獅霸的多重宇宙》頻道片尾範本（2026-09-30，阿福〈三個絕招〉定稿使用的版本，支援 16:9 與 9:16 直式）
 結構：N 張特寫靜幀（緩推＋下緣壓暗）＋每張 2 行「AI 工具・用途」名單 → 金色咒印法陣＋大標題逐字由光浮現、爆光、淡出。
 用法（H3 venv 有 numpy／Pillow／ffmpeg 即可）：
     C:\\AI\\H3\\venv\\Scripts\\python.exe render_ending.py config.json
-config.json 範例見同資料夾 config_example.json。輸出 24fps、1920x1080、無音訊（配樂與音效在主片後製疊）。
+config.json 範例見同資料夾 config_example.json。輸出 24fps、1920x1080（或 1080x1920）、無音訊（配樂與音效在主片後製疊）。
 規則：名單依實際使用的工具填寫；非商用授權工具（使用者指示）不列名；MiniMax Music 3 等要求標示的授權需列名並揭露 AI 生成。"""
 import json, subprocess, sys
 from pathlib import Path
@@ -38,9 +38,17 @@ def encoder(out):
 
 
 def render(cfg):
+    global W, H
+    is_portrait = str(cfg.get("aspect", "")).lower() in ("9:16", "portrait", "vertical", "直式")
+    if is_portrait:
+        W, H = 1080, 1920
+    else:
+        W, H = cfg.get("width", 1920), cfg.get("height", 1080)
     base = Path(cfg.get("_base", HERE)); title = cfg.get("title", "山獅霸的多重宇宙")
     card_dur, title_dur = cfg.get("card_dur", 3.3), cfg.get("title_dur", 7.5)
-    f_head = ImageFont.truetype(FONT_BOLD, 30); f_a = ImageFont.truetype(FONT_BOLD, 46); f_b = ImageFont.truetype(FONT_BOLD, 30)
+    f_head = ImageFont.truetype(FONT_BOLD, 28 if is_portrait else 30)
+    f_a = ImageFont.truetype(FONT_BOLD, 42 if is_portrait else 46)
+    f_b = ImageFont.truetype(FONT_BOLD, 28 if is_portrait else 30)
     enc = encoder(base / cfg.get("out", "ending.mp4")); n_card = int(card_dur * FPS)
     for ci, card in enumerate(cfg["cards"]):
         if len(card.get("tools", [])) > 3:   # max 3 tool lines per card: a 4th line runs off the bottom of the frame
@@ -52,17 +60,20 @@ def render(cfg):
             a = np.asarray(im.crop((x0, y0, x0 + cw, y0 + ch)).resize((W, H), Image.BILINEAR)).astype(np.float32)
             yy = np.linspace(0, 1, H)[:, None, None]; a = a * (0.55 + 0.45 * (1 - yy * 0.9))
             fr = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8)); d = ImageDraw.Draw(fr); fade = min(1.0, u / 0.15, (1 - u) / 0.15)
+            left_x = 90 if is_portrait else 150
+            start_y = 1380 if is_portrait else 780
             for k, (name, what) in enumerate(card["tools"]):
-                y = 780 + k * 92
-                d.text((150, y), name, font=f_a, fill=(255, 244, 222), stroke_width=4, stroke_fill=(0, 0, 0))
-                if what: d.text((150 + d.textlength(name, font=f_a) + 28, y + 12), "・ " + what, font=f_b, fill=(255, 226, 170), stroke_width=3, stroke_fill=(0, 0, 0))
-            if ci == 0: d.text((150, 725), cfg.get("header", "本片使用的 AI 工具"), font=f_head, fill=(255, 255, 255), stroke_width=3, stroke_fill=(0, 0, 0))
+                y = start_y + k * (85 if is_portrait else 92)
+                d.text((left_x, y), name, font=f_a, fill=(255, 244, 222), stroke_width=4, stroke_fill=(0, 0, 0))
+                if what: d.text((left_x + d.textlength(name, font=f_a) + 24, y + 10), "・ " + what, font=f_b, fill=(255, 226, 170), stroke_width=3, stroke_fill=(0, 0, 0))
+            if ci == 0: d.text((left_x, start_y - 55), cfg.get("header", "本片使用的 AI 工具"), font=f_head, fill=(255, 255, 255), stroke_width=3, stroke_fill=(0, 0, 0))
             enc.stdin.write(np.clip(np.asarray(fr).astype(np.float32) * fade, 0, 255).astype(np.uint8).tobytes())
     seal = Image.open(HERE / "assets" / "seal_gold.png").convert("RGB").resize((W, H), Image.LANCZOS)
-    f = ImageFont.truetype(FONT_TITLE, 176); meas = ImageDraw.Draw(Image.new("L", (W, H)))
+    title_size = 110 if is_portrait else 176
+    f = ImageFont.truetype(FONT_TITLE, title_size); meas = ImageDraw.Draw(Image.new("L", (W, H)))
     chars = []; tw = sum(meas.textlength(c, font=f) for c in title) + 10 * (len(title) - 1); x = (W - tw) / 2
     for c in title:
-        cm = Image.new("L", (W, H), 0); ImageDraw.Draw(cm).text((x, H / 2 - 110), c, font=f, fill=255, stroke_width=3, stroke_fill=255); chars.append(cm); x += meas.textlength(c, font=f) + 10
+        cm = Image.new("L", (W, H), 0); ImageDraw.Draw(cm).text((x, H / 2 - (70 if is_portrait else 110)), c, font=f, fill=255, stroke_width=3, stroke_fill=255); chars.append(cm); x += meas.textlength(c, font=f) + 10
     n = int(title_dur * FPS)
     for i in range(n):
         u = i / (n - 1); fade = min(1.0, u / 0.08) * min(1.0, (1 - u) / 0.22)
