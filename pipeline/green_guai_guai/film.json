@@ -1,0 +1,418 @@
+{
+ "_comment": "山獅霸短劇《綠色乖乖的詛咒》（片長約75秒，13鏡）。講述煉油廠大修重啟前夕，機櫃上鎮守系統的綠色椰子乖乖被阿強換成黃色五香乖乖，引發全廠警報與雞飛狗跳的爆笑故事。",
+ "title": "綠色乖乖的詛咒",
+ "repo_dir": "../..",
+ "voice_mode": "h3_ref",
+ "aspect": "9:16",
+ "cine": "A cinematic film still from a realistic Taiwanese workplace drama, shot on Kodak Vision3 500T film with an anamorphic 50mm lens at f/2. Industrial indoor fluorescent lighting mixed with cool machinery indicators, moody contrast, warm amber and cool teal grading, shallow depth of field, subtle 35mm grain. Full-frame image, NO black letterbox bars. ",
+ "set_sentence": "Use the industrial room from <image{n}> as the set, but only as the physical location.",
+ "frame_suffix": " Only the specified characters in focus. No text, no watermark, no captions.",
+ "h3": {
+  "style": "a realistic cinematic live-action Taiwanese film, 35mm grain, industrial lighting, tense workplace comedy",
+  "setting": "a Taiwanese oil refinery central control room during startup",
+  "soundscape": "Low hum of industrial monitors and servers, electronic warning beeps, distant plant machinery hum.",
+  "camera": "The camera holds a static shot on a tripod.",
+  "constraints": [
+   "No new people appear that are not already in the first frame; no captions and no readable text.",
+   "The camera stays locked on the tripod; no zoom, no pan.",
+   "LOCKED-OFF STATIC CAMERA on a tripod."
+  ]
+ },
+ "chars": {
+  "chen": {
+   "name": "陳工",
+   "look": "Chen, a 32-year-old Taiwanese plant process engineer with short black hair, rectangular black glasses, wearing a dark-blue industrial plant jumpsuit with ID badge clipped on chest, panicked and sweating, desperate expression",
+   "voice_design": "A fast-talking, stressed 32-year-old Taiwanese male engineer, articulate with a clear natural Taiwanese Mandarin accent.",
+   "voice_sample": "不可能啊！進料流量跟壓力完全正常，到底哪台伺服器在鬧脾氣？！",
+   "h3_voice": "a fast-talking stressed adult Taiwanese male voice",
+   "edge_voice": "zh-TW-YunJheNeural",
+   "sub_color": "&H00A0E8FF"
+  },
+  "li": {
+   "name": "老李",
+   "look": "Lao Li, a 50-year-old experienced Taiwanese refinery shift operator, weathered tanned face with a warm sly grin, crow's feet around laughing eyes, wearing a yellow hard hat, safety goggles hanging around his neck, and a faded navy-blue work jacket",
+   "voice_design": "A seasoned 50-year-old Taiwanese blue-collar plant veteran, deep, relaxed, confident and humorous voice, natural Taiwanese Mandarin accent.",
+   "voice_sample": "陳工啊，年輕人火氣別太大。歲修重啟順順跑就好，慌什麼？",
+   "h3_voice": "a deep, relaxed mature Taiwanese male voice",
+   "edge_voice": "zh-TW-YunXiNeural",
+   "sub_color": "&H00FFE6B4"
+  },
+  "qiang": {
+   "name": "阿強",
+   "look": "Ah Qiang, a 25-year-old young Taiwanese refinery rookie operator, round youthful face, wearing a yellow hard hat, navy-blue work shirt, cheerful and innocent expression, holding a snack",
+   "voice_design": "An energetic 25-year-old Taiwanese young man, breathless, loud and enthusiastic, natural Taiwanese Mandarin accent.",
+   "voice_sample": "班長，我剛剛看那包綠色過期半年了，好心幫你們換一包新鮮的，黃色象徵大發財耶！",
+   "h3_voice": "an energetic breathless young Taiwanese male voice",
+   "edge_voice": "zh-TW-HsiaoChenNeural",
+   "sub_color": "&H0080FF80"
+  }
+ },
+ "masters": {
+  "control": "A cinematic wide film still, shot on Kodak Vision3 500T film with an anamorphic lens. Inside the central control room of a Taiwanese oil refinery plant. A long curved console desk with multiple glowing computer monitors showing pipeline schematics and dials, swivel office chairs, stainless steel vacuum flasks on the desk, server racks in the background with blinking LEDs, high ceiling with soft panels. No people. Clean composition, realistic fluorescent lighting. No text, no watermark, no captions.",
+  "server_rack": "A cinematic medium close-up film still, shot on Kodak Vision3 500T film. Inside an industrial server room / refinery control room corner. A tall metallic black industrial server rack tower with blinking green and amber LED indicators, cooling vents, clean industrial setting. The flat top of the server rack is clear and visible. No people. Realistic fluorescent lighting. No text, no watermark.",
+  "plant_road": "A cinematic wide film still, shot on Kodak Vision3 500T film. An outdoor paved industrial road winding through a massive Taiwanese petrochemical refinery plant. Giant gleaming metal distillation towers, towering cracked-gas cracking columns, intricate overhead pipe racks, cloudy dramatic sky with puddles on asphalt reflecting metallic structures. No people. No text, no watermark.",
+  "plant_gate": "A cinematic wide film still. Outside the security checkpoint gate of a Taiwanese petrochemical plant. Heavy industrial barriers, guard booth, security barrier gate, massive factory complex in background. No people. No text, no watermark."
+ },
+ "shots": [
+  {
+   "id": "S01",
+   "refs": [],
+   "scene": [
+    "control",
+    [
+     0.2,
+     0.1,
+     0.8,
+     0.8
+    ]
+   ],
+   "dur": 4.0,
+   "line": null,
+   "frame": "Close-up shot: a large industrial DCS computer monitor in the control room, displaying glowing yellow alert warning banners, fluctuating diagnostic graphs, and pulsing yellow warning icons on a dark UI screen. No people.",
+   "action": "The camera holds on the glowing yellow warning screen as diagnostic graphs pulse and warning icons flicker continuously.",
+   "cut_in": 0.0,
+   "cut_out": "full"
+  },
+  {
+   "id": "S02",
+   "refs": [
+    "chen"
+   ],
+   "scene": [
+    "control",
+    [
+     0.1,
+     0.0,
+     0.9,
+     0.8
+    ]
+   ],
+   "dur": 6.0,
+   "line": {
+    "who": "chen",
+    "text": "不可能啊！進料流量跟壓力完全正常，到底哪台伺服器在鬧脾氣？！",
+    "at": 0.6
+   },
+   "frame": "Medium shot waist-up: the man with glasses from <image1> sits behind the curved console desk in the control room from <image2>, typing frantically on the keyboard, looking up at the glowing monitors with sweaty forehead and anxious, panicked eyes.",
+   "action": "The stressed engineer taps the keyboard frantically with trembling fingers, shouting in panic at the monitors.",
+   "cut_in": 0.3,
+   "tail": 0.8
+  },
+  {
+   "id": "S03",
+   "refs": [
+    "li"
+   ],
+   "scene": [
+    "control",
+    [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   ],
+   "dur": 6.5,
+   "line": {
+    "who": "li",
+    "text": "陳工啊，年輕人火氣別太大。歲修重啟順順跑就好，慌什麼？",
+    "at": 0.6
+   },
+   "frame": "Medium shot: the older man with yellow hard hat from <image1> pushes open the control room door, holding a silver stainless steel vacuum flask, smiling calmly and blowing gently across the rim of the steaming cup.",
+   "action": "The veteran operator walks casually into the room, chuckles warmly, and sips from his flask with complete relaxation.",
+   "cut_in": 0.3,
+   "tail": 0.8
+  },
+  {
+   "id": "S04",
+   "refs": [
+    "chen"
+   ],
+   "scene": [
+    "control",
+    [
+     0.1,
+     0.1,
+     0.9,
+     0.9
+    ]
+   ],
+   "dur": 6.5,
+   "line": {
+    "who": "chen",
+    "text": "班長！核心系統通訊全斷，再五分鐘找不到原因就要連鎖跳俥了！",
+    "at": 0.6
+   },
+   "frame": "Medium shot: the engineer with glasses from <image1> stands abruptly up from his swivel chair, pointing with high agitation at the flashing amber computer screen, shouting with wild eyes.",
+   "action": "The engineer springs out of his chair, waving his arms toward the blinking screens in utter exasperation.",
+   "cut_in": 0.3,
+   "tail": 0.8
+  },
+  {
+   "id": "S05",
+   "refs": [],
+   "scene": [
+    "server_rack",
+    [
+     0.1,
+     0.1,
+     0.9,
+     0.9
+    ]
+   ],
+   "dur": 4.5,
+   "line": null,
+   "frame": "Extreme close-up shot: resting flat on top of the black metallic industrial server rack from <image1>, there is a single brand-new, completely sealed, unopened and pristine puffy bright yellow snack bag, resting where sacred equipment usually sits. Blinking amber and green LEDs cast light upon the intact sealed bag. No people.",
+   "action": "Slow slight tilt down emphasizing the pristine unopened yellow snack bag sitting quietly atop the humming server rack under amber lights.",
+   "cut_in": 0.0,
+   "cut_out": "full"
+  },
+  {
+   "id": "S06",
+   "refs": [
+    "li"
+   ],
+   "scene": [
+    "control",
+    [
+     0.2,
+     0.1,
+     0.8,
+     0.9
+    ]
+   ],
+   "dur": 5.5,
+   "line": {
+    "who": "li",
+    "text": "噗！天啊……誰幹的？！誰動了鎮廠神物？！",
+    "at": 0.6
+   },
+   "frame": "Close-up shot: Lao Li, the older operator with yellow hard hat from <image1>, face distorted in comical shock with cheeks puffed, spraying a violent dramatic jet of water droplets forward out of his mouth in an epic spit-take, dropping his stainless steel flask.",
+   "action": "Starting from <Picture 1>, Lao Li suddenly gasps in horror and violently sprays an explosive torrent of tea water straight forward out of his wide-open mouth in a classic comedy spit-take. Dense water mist and fine splashing droplets burst across the camera frame. His head jerks backward in recoil, his eyes bulge wide with trembling terror, and his hands flail wildly while dropping the thermos flask onto the console desk.",
+   "cut_in": 0.3,
+   "tail": 0.8
+  },
+  {
+   "id": "S07",
+   "refs": [
+    "qiang"
+   ],
+   "scene": [
+    "control",
+    [
+     0.1,
+     0.0,
+     0.9,
+     0.9
+    ]
+   ],
+   "dur": 7.5,
+   "line": {
+    "who": "qiang",
+    "text": "班長，我剛剛看那包綠色過期半年了，好心幫你們換一包新鮮的，黃色象徵大發財耶！",
+    "at": 0.6
+   },
+   "frame": "Medium shot: the young rookie operator with yellow hard hat from <image1> walks cheerfully into the control room holding an open bright green bag of snacks, munching happily with a proud, innocent grin.",
+   "action": "The rookie munches on a green bag snack enthusiastically, gesticulating happily with the open green bag and explaining his great deed.",
+   "cut_in": 0.3,
+   "tail": 0.8
+  },
+  {
+   "id": "S08",
+   "refs": [
+    "li"
+   ],
+   "scene": [
+    "control",
+    [
+     0.1,
+     0.1,
+     0.9,
+     0.9
+    ]
+   ],
+   "dur": 7.0,
+   "line": {
+    "who": "li",
+    "text": "發什麼財！黃色是警示燈啊！綠色才是通行順暢！你把護廠結界給吃了？！",
+    "at": 0.6
+   },
+   "frame": "Medium shot: the veteran operator from <image1> lunges forward with bulging furious eyes, gripping two hands in the air shouting with exasperation in the control room.",
+   "action": "The older operator steps aggressively forward, shaking both fists and bellowing in furious disbelief.",
+   "cut_in": 0.3,
+   "tail": 0.8
+  },
+  {
+   "id": "S09",
+   "refs": [
+    "chen"
+   ],
+   "scene": [
+    "control",
+    [
+     0.1,
+     0.0,
+     0.9,
+     0.9
+    ]
+   ],
+   "dur": 6.0,
+   "line": {
+    "who": "chen",
+    "text": "又跳掉一台！只剩三分鐘！買不到綠色我們三個明天通通去跟廠長提頭來見！",
+    "at": 0.6
+   },
+   "frame": "Close-up shot: the engineer with glasses from <image1> clutching his head with both hands, screaming upward in agony, glowing red and amber reflections bouncing off his spectacles.",
+   "action": "The engineer clutches his temples and groans loudly in total existential despair.",
+   "cut_in": 0.3,
+   "tail": 0.8
+  },
+  {
+   "id": "S10",
+   "refs": [
+    "qiang"
+   ],
+   "scene": [
+    "control",
+    [
+     0.1,
+     0.0,
+     0.9,
+     0.9
+    ]
+   ],
+   "dur": 5.0,
+   "line": {
+    "who": "qiang",
+    "text": "我現在騎車去福利社！誰都不要攔我！",
+    "at": 0.5
+   },
+   "frame": "Medium shot: the rookie operator from <image1>, face turning pale with sheer terror, tosses the snack bag aside and snaps his yellow hard hat strap tight under chin, turning toward the door.",
+   "action": "The rookie gasps in horror, fastens his helmet strap with jerky haste, and bolts toward the exit.",
+   "cut_in": 0.3,
+   "tail": 0.8
+  },
+  {
+   "id": "S11",
+   "refs": [
+    "qiang"
+   ],
+   "scene": [
+    "plant_road",
+    [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   ],
+   "dur": 5.5,
+   "line": null,
+   "frame": "Wide shot tracking: the rookie operator from <image1> in yellow helmet furiously pedaling an old rusty industrial utility bicycle along the wet refinery road between massive cracking towers, feet blurred with speed. No captions.",
+   "action": "The rookie pedals the bicycle furiously down the industrial plant road, leaning forward desperately.",
+   "cut_in": 0.0,
+   "cut_out": "full"
+  },
+  {
+   "id": "S12",
+   "refs": [
+    "li"
+   ],
+   "scene": [
+    "control",
+    [
+     0.1,
+     0.0,
+     0.9,
+     0.9
+    ]
+   ],
+   "dur": 7.0,
+   "line": {
+    "who": "li",
+    "text": "福利社沒開就去市區超商買！一定要椰子口味！買黃色或紅色的你不用回來了！",
+    "at": 0.6
+   },
+   "frame": "Medium close-up shot: the older operator with yellow hard hat from <image1> yelling furiously into a black handheld two-way radio walkie-talkie, neck veins bulging, pointing violently toward the window.",
+   "action": "The older operator barks frantically into the walkie-talkie, trembling with urgency.",
+   "cut_in": 0.3,
+   "tail": 0.8
+  },
+  {
+   "id": "S13",
+   "refs": [],
+   "scene": [
+    "plant_gate",
+    [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ]
+   ],
+   "dur": 4.5,
+   "line": null,
+   "frame": "Cinematic wide shot: at the plant security gate from <image1>, the silhouette of the young worker with yellow hard hat on a bicycle is halted by an unmoving security guard with a clipboard. The worker waves his arms hysterically. Dramatic cloudy sky.",
+   "action": "The cyclist flails his arms frantically while the guard calmly raises a hand, frozen in comical standoff.",
+   "cut_in": 0.0,
+   "cut_out": "full"
+  }
+ ],
+ "music": {
+  "prompt": "comedic tension workplace film score, purely instrumental, quirky bassoon, fast pizzicato cello, frantic xylophone, cheeky woodwinds, comical escalating tempo building up to frantic polka chase. BPM 125, key D minor.",
+  "caption": "Genre: comedic tension workplace film score, purely instrumental, quirky bassoon, fast pizzicato cello, frantic xylophone, cheeky woodwinds, comical escalating tempo building up to frantic polka chase. BPM 125, key D minor.\nVocal: NONE. No singing, no humming, no choir.\nArrangement: pizzicato strings, bassoon, xylophone, light brass, snare brushes.",
+  "seeds": [
+   12,
+   48,
+   99
+  ]
+ },
+ "mix": {
+  "say_lead": 0.2,
+  "default_tail": 0.6,
+  "music_under_lines": 0.25,
+  "music_bed_rms": 0.035,
+  "target_lufs": -15.5
+ },
+ "ending": {
+  "closeups": [
+   "S02",
+   "S06",
+   "S08",
+   "S12"
+  ],
+  "header": "本片使用的 AI 工具（Google Colab 雲端執行）",
+  "card_dur": 3.0,
+  "title_dur": 3.5,
+  "cards": [
+   [
+    [
+     "MiniMax H3",
+     "影片生成（Colab G4）"
+    ],
+    [
+     "Qwen-Image 2.1／Edit",
+     "角色與首幀生成"
+    ],
+    [
+     "MiniMax-Music3",
+     "配樂生成"
+    ]
+   ],
+   [
+    [
+     "Breeze TTS 2",
+     "角色聲音設計"
+    ],
+    [
+     "faster-whisper・BS-RoFormer",
+     "聽寫校對／配樂分離"
+    ],
+    [
+     "本片畫面、配音與配樂皆由 AI 生成",
+     ""
+    ]
+   ]
+  ]
+ }
+}

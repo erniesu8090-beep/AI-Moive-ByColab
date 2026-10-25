@@ -30,7 +30,7 @@ REPO = Path(__file__).resolve().parents[1]
 EXCLUDED = {"US", "GB", "KR", "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE", "IT", "LV", "LT",
             "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE"}     # MiniMax H3 licence I.5: US, EU, UK, Republic of Korea
 FILE_KEYS = ["first_frame", "last_frame", "first_clip"]
-RETRY = ("Connection was lost", "Timeout waiting for reply", "Read timed out", "ConnectionError", "RemoteDisconnected")
+RETRY = ("Connection was lost", "Timeout waiting for reply", "Read timed out", "ConnectionError", "RemoteDisconnected", "ConnectionResetError", "10054")
 
 
 def colab_bin():
@@ -320,9 +320,21 @@ def cmd_film(a):
     if extra:
         print(f"[film] 帶到 VM 的設定：{' '.join(extra)}", flush=True)
     tmp = Path(tempfile.mkdtemp()) / "film.zip"
+    def should_upload(f):
+        if not f.is_file(): return False
+        if '__pycache__' in f.parts or 'backup' in f.name: return False
+        if f.parent == fd: return True
+        rel_parts = f.relative_to(fd).parts
+        if rel_parts[0] == 'out':
+            if len(rel_parts) >= 2 and rel_parts[1] in ('chars', 'masters', 'first'):
+                return not rel_parts[-1].startswith('crop_') and not rel_parts[-1].startswith('_sheet')
+            if len(rel_parts) >= 2 and rel_parts[1] == 'voice' and f.name.startswith('ref_'):
+                return True
+            return False
+        return False
     with zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED) as z:
         for f in fd.rglob("*"):
-            if f.is_file() and "__pycache__" not in f.parts and not any(p in f.parts for p in ("h3", "music")):
+            if should_upload(f):
                 z.write(f, f.relative_to(fd).as_posix())
     print(f"[film] 上傳 {rel}（{tmp.stat().st_size / 1e6:.1f} MB）…", flush=True)
     upload(a.name, tmp, "/content/film.zip")
