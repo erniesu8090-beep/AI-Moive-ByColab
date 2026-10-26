@@ -500,7 +500,15 @@ def edl():
 
 def load(p):
     import numpy as np
-    r = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", str(p), "-ar", str(SR), "-ac", "1", "-f", "f32le", "-"], capture_output=True)
+    p_obj = Path(str(p).replace("\\", "/"))
+    if not p_obj.exists():
+        parts = [x for x in str(p).replace("\\", "/").split("/") if x]
+        if "out" in parts:
+            idx = parts.index("out")
+            candidate = OUT / Path(*parts[idx + 1:])
+            if candidate.exists():
+                p_obj = candidate
+    r = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", str(p_obj), "-ar", str(SR), "-ac", "1", "-f", "f32le", "-"], capture_output=True)
     return np.frombuffer(r.stdout, np.float32).copy()
 
 
@@ -581,6 +589,38 @@ def ending():
 def ass_time(t):
     return f"{int(t // 3600)}:{int(t % 3600 // 60):02d}:{t % 60:05.2f}"
 
+def wrap_cjk_sub(speaker, content, max_chars=14):
+    pfx = f"{speaker}："
+    custom_breaks = {
+        # fmt: off
+        r"陳工：班長！核心系統通訊全斷，再五分鐘找不到原因就要連鎖跳俥了！": 
+            r"陳工：班長！核心系統通訊全斷，\N再五分鐘找不到原因，\N就要連鎖跳俥了！",
+        r"陳工：又跳掉一台！只剩三分鐘！買不到綠色我們三個明天通通去跟廠長提頭來見！":
+            r"陳工：又跳掉一台！只剩三分鐘！\N買不到綠色，\N我們三個明天通通去跟廠長提頭來見！"
+    }
+    full_str = f"{pfx}{content}"
+    if full_str in custom_breaks:
+        return custom_breaks[full_str]
+    chunks = re.findall(r"[^，。！？、…\n]+[，。！？、…]*", content) or [content]
+    res_lines = []
+    cur_line = pfx
+    for c in chunks:
+        if len(cur_line) + len(c) > max_chars and len(cur_line) > len(pfx):
+            res_lines.append(cur_line)
+            cur_line = c
+        else:
+            cur_line += c
+    if cur_line:
+        res_lines.append(cur_line)
+    split_lines = []
+    for l in res_lines:
+        while len(l) > max_chars + 3:
+            split_lines.append(l[:max_chars])
+            l = l[max_chars:]
+        if l:
+            split_lines.append(l)
+    return r"\N".join(split_lines)
+
 
 @stage("cut")
 def cut():
@@ -614,15 +654,26 @@ def cut():
     under = MIX.get("music_under_lines", 0.30)
     for r in e["shots"]:
         for l in r["lines"]:
-            a = load(l["file"]); s0 = int(l["film_start"] * SR); voice[s0:s0 + len(a)] += a[: n - s0]
-            duck[max(0, int((l["film_start"] - 0.25) * SR)):int((l["film_end"] + 0.35) * SR)] = under
+            a = load(l["file"])
+            s0 = int(l["film_start"] * SR)
+            a_start = max(0, -s0)
+            v_start = max(0, s0)
+            a_chunk = a[a_start:a_start + max(0, n - v_start)]
+            v_end = v_start + len(a_chunk)
+            if v_end > v_start and len(a_chunk) > 0:
+                voice[v_start:v_end] += a_chunk
+            duck[max(0, int((l["film_start"] - 0.25) * SR)):min(n, int((l["film_end"] + 0.35) * SR))] = under
         if r.get("amb"):                             # amb 階段確認過沒有人聲的 H3 原生音效
             a = load(r["amb"])[int(r["src_in"] * SR):int(r["src_out"] * SR)]
-            fade = np.minimum(1, np.minimum(np.arange(len(a)) / (0.15 * SR), (len(a) - np.arange(len(a))) / (0.15 * SR)))
-            s0 = int(r["start"] * SR); amb_[s0:s0 + len(a)] += (a * fade * 0.8)[: n - s0]
-    k = int(0.12 * SR); duck = np.convolve(duck, np.ones(k) / k, mode="same")
-    mus = load(json.loads((post / "music_pick.json").read_text(encoding="utf-8"))["file"])[:n]; mus = np.pad(mus, (0, n - len(mus)))
-    mus = mus / (np.sqrt((mus[: int(e["story_end"] * SR)] ** 2).mean()) + 1e-9) * MIX.get("music_bed_rms", 0.035)
+            s0 = int(r["start"] * SR)
+            a_start = max(0, -s0)
+            v_start = max(0, s0)
+            a_chunk = a[a_start:a_start + max(0, n - v_start)]
+            v_end = v_start + len(a_chunk)
+            if v_end > v_start and len(a_chunk) > 0:
+                amb_[v_start:v_end] += a_chunk
+    mus_f = (OUT / "music" / "music_clean.wav") if (OUT / "music" / "music_clean.wav").exists() else (OUT / "music" / "music_looped.wav" if (OUT / "music" / "music_looped.wav").exists() else (OUT / "music" / "music.wav"))
+    mus = load(mus_f)[:n] if mus_f.exists() else np.zeros(n, np.float32)
     t = np.arange(n) / SR
     mix = voice + amb_ + mus * duck * np.clip((vtotal - t) / 3.0, 0, 1) * np.clip(t / 0.8, 0, 1)
     raw = post / "mix_raw.wav"
@@ -634,13 +685,13 @@ def cut():
         r = subprocess.run(["ffmpeg", "-i", str(raw), "-af", f"volume={gain:.2f}dB,alimiter=limit=0.78:level=false:attack=2:release=80,ebur128",
                             "-f", "null", "-"], capture_output=True, text=True, encoding="utf-8", errors="replace")
         m = re.findall(r"I:\s*(-?[\d.]+) LUFS", r.stderr); got = float(m[-1]) if m else target
-        if abs(got - target) <= 0.4:
+        if abs(got - target) < 0.3:
             break
         gain += target - got
     run(["ffmpeg", "-y", "-loglevel", "error", "-i", raw, "-af", f"volume={gain:.2f}dB,alimiter=limit=0.78:level=false:attack=2:release=80", "-ar", str(SR),
          post / "mix.wav"])
     # 字幕（ASS，依說話者上色，放大到 1080p 之後才燒）
-    hdr = (f"[Script Info]\nScriptType: v4.00+\nPlayResX: {PLAY_RES_X}\nPlayResY: {PLAY_RES_Y}\n\n[V4+ Styles]\n"
+    hdr = (f"[Script Info]\nScriptType: v4.00+\nWrapStyle: 0\nPlayResX: {PLAY_RES_X}\nPlayResY: {PLAY_RES_Y}\n\n[V4+ Styles]\n"
            "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, "
            "Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding\n")
     for k, c in CHARS.items():
@@ -652,7 +703,8 @@ def cut():
         if i + 1 < len(caps):
             b = min(b, caps[i + 1][0]["film_start"] - 0.1)
         b = min(b, r["start"] + r["dur"] - 0.04)
-        ev += f"Dialogue: 0,{ass_time(a)},{ass_time(b)},{l['who']},,0,0,0,,{CHARS[l['who']]['name']}：{l['text']}\n"
+        w_text = wrap_cjk_sub(CHARS[l["who"]]["name"], l["text"], max_chars=14)
+        ev += f"Dialogue: 0,{ass_time(a)},{ass_time(b)},{l['who']},,0,0,0,,{w_text}\n"
     (post / "subs.ass").write_text(hdr + ev, encoding="utf-8")
     (OUT / "cut").mkdir(exist_ok=True)
     run(["ffmpeg", "-y", "-loglevel", "error", "-i", "post/video.mp4", "-i", "post/mix.wav", "-vf", "subtitles=post/subs.ass", "-map", "0:v", "-map", "1:a",
@@ -661,7 +713,6 @@ def cut():
     run(["ffmpeg", "-y", "-loglevel", "error", "-i", OUT / "cut" / "film_1080p.mp4", "-vf", f"scale={SCALE_720}", "-c:v", "libx264", "-crf", "26",
          "-c:a", "aac", "-b:a", "128k", OUT / "cut" / "film_720p_phone.mp4"])
     print(f"成片 out/cut/film_1080p.mp4（{vtotal:.2f} 秒）", flush=True)
-
 
 @stage("review")
 def review():

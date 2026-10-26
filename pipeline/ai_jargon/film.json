@@ -1,0 +1,254 @@
+{
+  "_comment": "山獅霸短劇《AI 聽不懂老鳥黑話》（片長約72秒，12鏡）。講述製程主管陳工引進最新 AI 語音交接日誌，資深領班老李用滿嘴台灣煉油廠黑話（把卜、法蘭、催螺絲）輸入，結果 AI 浪漫腦補成星際科幻史詩，引發全場爆笑的故事。",
+  "title": "AI 聽不懂老鳥黑話",
+  "repo_dir": "../..",
+  "voice_mode": "h3_ref",
+  "aspect": "9:16",
+  "cine": "A cinematic film still from a realistic Taiwanese workplace drama, shot on Kodak Vision3 500T film with an anamorphic 50mm lens at f/2. Industrial indoor fluorescent lighting mixed with cool machinery indicators, moody contrast, warm amber and cool teal grading, shallow depth of field, subtle 35mm grain. Full-frame image, NO black letterbox bars. ",
+  "set_sentence": "Use the industrial room from <image{n}> as the set, but only as the physical location.",
+  "frame_suffix": " Only the specified characters in focus. No text, no watermark, no captions.",
+  "h3": {
+    "style": "a realistic cinematic live-action Taiwanese film, 35mm grain, industrial lighting, workplace comedy",
+    "setting": "a Taiwanese oil refinery central control room",
+    "soundscape": "Hum of industrial monitors and servers, faint computer mouse clicks, distant machinery hum.",
+    "camera": "The camera holds a static shot on a tripod.",
+    "constraints": [
+      "No new people appear that are not already in the first frame; no captions and no readable text.",
+      "The camera stays locked on the tripod; no zoom, no pan.",
+      "LOCKED-OFF STATIC CAMERA on a tripod."
+    ]
+  },
+  "chars": {
+    "chen": {
+      "name": "陳工",
+      "look": "Chen, a 32-year-old Taiwanese plant process engineer with short black hair, rectangular black glasses, wearing a dark-blue industrial plant jumpsuit with ID badge clipped on chest, holding a high-tech glowing rugged industrial tablet",
+      "voice_design": "A fast-talking, enthusiastic 32-year-old Taiwanese male engineer, articulate with a clear natural Taiwanese Mandarin accent.",
+      "voice_sample": "李哥！公司全面數位轉型，引進最新 AI 語音助理，以後交接班動動嘴巴就能自動寫日誌！",
+      "h3_voice": "a fast-talking enthusiastic adult Taiwanese male voice",
+      "edge_voice": "zh-TW-YunJheNeural",
+      "sub_color": "&H00A0E8FF"
+    },
+    "li": {
+      "name": "老李",
+      "look": "Lao Li, a 50-year-old experienced Taiwanese refinery shift operator, weathered tanned face with a warm sly grin, crow's feet around laughing eyes, wearing a yellow hard hat, safety goggles hanging around his neck, and a faded navy-blue work jacket",
+      "voice_design": "A seasoned 50-year-old Taiwanese blue-collar plant veteran, deep, relaxed, confident and humorous voice, natural Taiwanese Mandarin accent.",
+      "voice_sample": "AI？真有這麼神？阿強，拿過來我唸兩句試試看。",
+      "h3_voice": "a deep, relaxed mature Taiwanese male voice",
+      "edge_voice": "zh-TW-YunXiNeural",
+      "sub_color": "&H00FFE6B4"
+    },
+    "qiang": {
+      "name": "阿強",
+      "look": "Ah Qiang, a 25-year-old young Taiwanese refinery rookie operator, round youthful face, wearing a yellow hard hat, navy-blue work shirt, cheerful and innocent expression, holding a tablet respectfully",
+      "voice_design": "An energetic 25-year-old Taiwanese young man, polite and respectful, natural Taiwanese Mandarin accent.",
+      "voice_sample": "李哥請講，系統正在深度聆聽喔！",
+      "h3_voice": "an energetic polite young Taiwanese male voice",
+      "edge_voice": "zh-TW-HsiaoChenNeural",
+      "sub_color": "&H0080FF80"
+    }
+  },
+  "masters": {
+    "control": "A cinematic wide film still, shot on Kodak Vision3 500T film with an anamorphic lens. Inside the central control room of a Taiwanese oil refinery plant. A long curved console desk with multiple glowing computer monitors showing pipeline schematics and dials, swivel office chairs, stainless steel vacuum flasks on the desk, server racks in the background with blinking LEDs, high ceiling with soft panels. No people. Clean composition, realistic fluorescent lighting. No text, no watermark, no captions.",
+    "tablet_ui": "A cinematic close-up film still, shot on Kodak Vision3 500T film. A rugged black industrial tablet computer resting on a control room metal desk. The glowing screen displays a sleek futuristic neon-blue audio waveform visualizer and high-tech status rings on a dark cybernetic UI. No people. Realistic fluorescent lighting reflection on glass screen, subtle 35mm grain. Absolutely NO readable text, NO words, NO watermark."
+  },
+  "shots": [
+    {
+      "id": "S01",
+      "refs": ["chen"],
+      "scene": ["control", [0.1, 0.0, 0.9, 0.9]],
+      "dur": 5.5,
+      "line": {
+        "who": "chen",
+        "text": "李哥！公司全面數位轉型，引進最新 AI 語音助理，以後交接班動動嘴巴就能自動寫日誌！",
+        "at": 0.5
+      },
+      "frame": "Medium shot waist-up: the engineer with glasses from <image1> walks briskly into the refinery control room from <image2>, holding a glowing rugged industrial tablet in his hands, speaking enthusiastically with a proud confident smile.",
+      "action": "The excited young engineer walks in holding up the tablet proudly, speaking with bright gestures and enthusiastic facial expressions.",
+      "cut_in": 0.3,
+      "tail": 0.7
+    },
+    {
+      "id": "S02",
+      "refs": ["li"],
+      "scene": ["control", [0.0, 0.0, 1.0, 1.0]],
+      "dur": 5.5,
+      "line": {
+        "who": "li",
+        "text": "AI？真有這麼神？阿強，拿過來我唸兩句試試看。",
+        "at": 0.5
+      },
+      "frame": "Medium close-up shot: the veteran plant operator with yellow hard hat from <image1> holds a stainless steel vacuum thermos flask, raising an eyebrow with amused skepticism, looking across the control room.",
+      "action": "The seasoned operator pauses with his thermos in hand, arches a skeptical eyebrow, and speaks with a dry chuckle.",
+      "cut_in": 0.3,
+      "tail": 0.7
+    },
+    {
+      "id": "S03",
+      "refs": ["qiang"],
+      "scene": ["control", [0.1, 0.0, 0.9, 0.9]],
+      "dur": 4.5,
+      "line": {
+        "who": "qiang",
+        "text": "李哥請講，系統正在深度聆聽喔！",
+        "at": 0.5
+      },
+      "frame": "Medium shot: the young rookie operator with yellow hard hat from <image1> carefully holds the rugged industrial tablet with both hands extended forward toward the viewer, speaking with eager helpful eyes.",
+      "action": "The polite rookie operator steps forward offering the tablet with two hands, nodding respectfully as he speaks.",
+      "cut_in": 0.3,
+      "tail": 0.7
+    },
+    {
+      "id": "S04",
+      "refs": ["li"],
+      "scene": ["control", [0.1, 0.0, 0.9, 0.9]],
+      "dur": 7.5,
+      "line": {
+        "who": "li",
+        "text": "那個二號把卜有雜音啦，法蘭片漏水叫少年仔去車一車，順便拿一隻巴拉去催螺絲，聽有沒？",
+        "at": 0.5
+      },
+      "frame": "Close-up shot chest-up: the veteran operator from <image1> leans toward the tablet microphone, waving his right hand dramatically with twisting wrench gestures, speaking rapid Taiwanese refinery jargon with loud commanding confidence.",
+      "action": "The operator leans into the microphone, gesticulating emphatically with his hands as he rattles off colloquial plant terminology loudly.",
+      "cut_in": 0.3,
+      "tail": 0.8
+    },
+    {
+      "id": "S05",
+      "refs": [],
+      "scene": ["tablet_ui", [0.0, 0.0, 1.0, 1.0]],
+      "dur": 4.5,
+      "line": null,
+      "frame": "Extreme close-up shot: a rugged industrial tablet screen displaying a glowing circular neon-blue audio waveform visualizer pulsing rapidly with circular progress ring and high-tech status indicators in a dark industrial UI. No people.",
+      "action": "The camera holds static as the circular neon-blue audio waveform pulses smoothly and the high-tech digital UI rings rotate continuously.",
+      "cut_in": 0.0,
+      "cut_out": "full"
+    },
+    {
+      "id": "S06",
+      "refs": ["chen"],
+      "scene": ["control", [0.1, 0.0, 0.9, 0.9]],
+      "dur": 8.5,
+      "line": {
+        "who": "chen",
+        "text": "已生成詩篇：第二象限脈衝心臟發出悲鳴，次元法蘭滲透星際之淚，已指派幼年星艦士手持量子手杖校準引力螺栓……",
+        "at": 0.5
+      },
+      "frame": "Medium close-up shot: the engineer with glasses from <image1> stares down at the tablet in shock, eyes widening in disbelief, mouth slightly agape as he reads the ridiculous text aloud.",
+      "action": "The engineer stares down at the tablet screen reading the text aloud with growing embarrassment, his proud smile collapsing into stunned, jaw-dropped disbelief.",
+      "cut_in": 0.3,
+      "tail": 0.8
+    },
+    {
+      "id": "S07",
+      "refs": ["li"],
+      "scene": ["control", [0.1, 0.0, 0.9, 0.9]],
+      "dur": 6.5,
+      "line": {
+        "who": "li",
+        "text": "蛤？！伊到底是咧供三小？什麼星際之淚？！",
+        "at": 0.5
+      },
+      "frame": "Close-up shot: the veteran operator from <image1> with eyes bugging out in sheer hilarious shock, sputtering and pointing a finger aggressively at the tablet with an incredulous, bewildered expression.",
+      "action": "The seasoned operator recoils in shock, spluttering with wide bulging eyes and shouting furiously at the tablet in utter bewilderment.",
+      "cut_in": 0.3,
+      "tail": 0.8
+    },
+    {
+      "id": "S08",
+      "refs": ["qiang"],
+      "scene": ["control", [0.1, 0.0, 0.9, 0.9]],
+      "dur": 5.5,
+      "line": null,
+      "frame": "Medium shot waist-up: the young rookie operator from <image1> stands in the background biting his lower lip desperately, cheeks puffed out, struggling with all his might to stifle explosive laughter.",
+      "action": "The young operator trembles with suppressed laughter, shoulders shaking convulsively with puffed red cheeks, trying desperately not to laugh out loud.",
+      "cut_in": 0.3,
+      "tail": 0.7
+    },
+    {
+      "id": "S09",
+      "refs": ["chen"],
+      "scene": ["control", [0.1, 0.0, 0.9, 0.9]],
+      "dur": 7.5,
+      "line": {
+        "who": "chen",
+        "text": "AI 你誤會了！老李的意思是二號泵浦軸承異常，請派員更換法蘭墊片！",
+        "at": 0.5
+      },
+      "frame": "Close-up shot: the engineer with glasses from <image1> in a nervous cold sweat, anxiously adjusting his rectangular glasses with one hand while desperately speaking into the tablet microphone in his other hand.",
+      "action": "The flustered engineer pushes his slipping glasses up his sweaty nose, speaking urgently and pleadingly into the tablet microphone.",
+      "cut_in": 0.3,
+      "tail": 0.8
+    },
+    {
+      "id": "S10",
+      "refs": [],
+      "scene": ["tablet_ui", [0.0, 0.0, 1.0, 1.0]],
+      "dur": 5.5,
+      "line": null,
+      "frame": "Close-up shot: the rugged tablet screen displays a glowing cool retro digital robot icon with neon sunglasses, with a bold glowing refusal lock icon on the high-tech UI screen. No people.",
+      "action": "The robotic sunglasses icon on the tablet screen pulses with cool neon light as digital lock graphics flicker calmly.",
+      "cut_in": 0.0,
+      "cut_out": "full"
+    },
+    {
+      "id": "S11",
+      "refs": ["li"],
+      "scene": ["control", [0.1, 0.0, 0.9, 0.9]],
+      "dur": 8.5,
+      "line": {
+        "who": "li",
+        "text": "陳工啊，科技很好，但工廠的水很深，你的 AI 還得再多實習二十年啦！",
+        "at": 0.6
+      },
+      "frame": "Medium shot waist-up: the veteran operator from <image1> slaps a worn, wrinkled yellow pocket notebook and a chewed ballpoint pen onto the metal console desk, grinning with hearty paternal amusement.",
+      "action": "The veteran operator slaps his battered notebook onto the table with a hearty laugh, gestures affectionately toward Chen, and shakes his head with seasoned wisdom.",
+      "cut_in": 0.3,
+      "tail": 0.8
+    },
+    {
+      "id": "S12",
+      "refs": ["qiang"],
+      "scene": ["control", [0.1, 0.0, 0.9, 0.9]],
+      "dur": 6.5,
+      "line": {
+        "who": "qiang",
+        "text": "那個……陳工，所以量子手杖到底要去哪一間庫房領啊？",
+        "at": 0.5
+      },
+      "frame": "Close-up shot: the young rookie operator from <image1> scratches his yellow hard hat with a completely naive, serious and genuinely puzzled expression, mouth slightly open, looking directly into the camera.",
+      "action": "The young operator scratches under his hard hat with a look of genuine sincere confusion, asking his question with wide naive eyes.",
+      "cut_in": 0.3,
+      "tail": 0.8
+    }
+  ],
+  "music": {
+    "prompt": "playful quirky comedic film score, purely instrumental, bouncy pizzicato strings, cheeky bassoon, comical marimba, lighthearted woodwinds, modern tech synth bleeps mixed with acoustic groove. BPM 118, key C major.",
+    "caption": "Genre: playful quirky comedic film score, purely instrumental, bouncy pizzicato strings, cheeky bassoon, comical marimba, lighthearted woodwinds, modern tech synth bleeps mixed with acoustic groove. BPM 118, key C major.\nVocal: NONE. No singing, no humming, no choir.\nArrangement: pizzicato strings, bassoon, marimba, playful percussion, tech synth blips.",
+    "seeds": [18, 42, 88]
+  },
+  "mix": {
+    "say_lead": 0.2,
+    "default_tail": 0.6,
+    "music_under_lines": 0.25,
+    "music_bed_rms": 0.035,
+    "target_lufs": -15.5
+  },
+  "ending": {
+    "closeups": ["S02", "S04", "S07", "S12"],
+    "header": "本片使用的 AI 工具（Google Colab 雲端執行）",
+    "card_dur": 3.0,
+    "title_dur": 3.5,
+    "cards": [
+      [
+        ["MiniMax H3", "影片生成（Colab G4）"],
+        ["Qwen-Image 2.1／Edit", "角色與首幀生成"],
+        ["MiniMax-Music3", "配樂生成"]
+      ],
+      [
+        ["Breeze TTS 2", "角色聲音設計"],
+        ["faster-whisper・BS-RoFormer", "聽寫校對／配樂分離"],
+        ["本片畫面、配音與配樂皆由 AI 生成", ""]
+      ]
+    ]
+  }
+}

@@ -1,0 +1,265 @@
+{
+  "_comment": "山獅霸熱血短劇《轉不動的八號閥門》（片長約73.5秒，13鏡，16:9橫式電影感）。講述高壓管線緊急超壓，手動旁通閥卡死，阿強徒手拉不動瀕臨絕望，資深領班老李扛著加長力矩桿霸氣登場，師徒合力爆氣怒吼轉動閥門拯救全廠，阿強滿懷崇拜的熱血工業史詩。",
+  "title": "轉不動的八號閥門",
+  "repo_dir": "../..",
+  "voice_mode": "h3_ref",
+  "aspect": "16:9",
+  "cine": "A cinematic film still from a realistic Taiwanese industrial action drama, shot on Kodak Vision3 500T film with an anamorphic 50mm lens at f/2. Moody industrial lighting mixed with flashing red emergency warning lights and cool steam mist, cinematic color grading with deep teal shadows and glowing amber highlights, shallow depth of field, subtle 35mm grain. Full-frame image, NO black letterbox bars. ",
+  "set_sentence": "Use the industrial facility from <image{n}> as the set, but only as the physical location.",
+  "frame_suffix": " Only the specified characters in focus. No text, no watermark, no captions.",
+  "h3": {
+    "style": "a realistic cinematic live-action Taiwanese film, 35mm grain, heavy industrial lighting, action drama",
+    "setting": "a Taiwanese oil refinery plant high-pressure pipeline hall during an emergency",
+    "soundscape": "Shrill industrial emergency alarms, piercing steam hiss from pipes, deep rumbling machinery vibrations.",
+    "camera": "The camera holds a static shot on a tripod.",
+    "constraints": [
+      "No new people appear that are not already in the first frame; no captions and no readable text.",
+      "The camera stays locked on the tripod; no zoom, no pan.",
+      "LOCKED-OFF STATIC CAMERA on a tripod."
+    ]
+  },
+  "chars": {
+    "chen": {
+      "name": "陳工",
+      "look": "Chen, a 32-year-old Taiwanese plant process engineer with short black hair, rectangular black glasses, wearing a dark-blue industrial plant jumpsuit with ID badge, looking extremely panicked and sweating under flashing red emergency lights",
+      "voice_design": "A fast-talking, highly panicked 32-year-old Taiwanese male engineer, breathless and urgent, natural Taiwanese Mandarin accent.",
+      "voice_sample": "警報！主反應管線超壓！八號手動旁通閥卡死了！",
+      "h3_voice": "a fast-talking stressed urgent adult Taiwanese male voice",
+      "edge_voice": "zh-TW-YunJheNeural",
+      "sub_color": "&H00A0E8FF"
+    },
+    "li": {
+      "name": "老李",
+      "look": "Lao Li, a 50-year-old experienced Taiwanese refinery shift operator, weathered tanned face, fierce determined eyes, wearing a yellow hard hat, safety goggles, and a heavy faded navy-blue work jacket, exuding immense veteran authority",
+      "voice_design": "A seasoned 50-year-old Taiwanese plant veteran, deep, powerful, gravelly and commanding voice, natural Taiwanese Mandarin accent.",
+      "voice_sample": "撤什麼撤！在石化廠，就沒有老子轉不動的閥門！",
+      "h3_voice": "a deep powerful commanding mature Taiwanese male voice",
+      "edge_voice": "zh-TW-YunXiNeural",
+      "sub_color": "&H00FFE6B4"
+    },
+    "qiang": {
+      "name": "阿強",
+      "look": "Ah Qiang, a 25-year-old young Taiwanese refinery rookie operator, round youthful face dripping with sweat, wearing a yellow hard hat, navy-blue work shirt, sleeves rolled up, determined and fiery expression",
+      "voice_design": "An energetic 25-year-old Taiwanese young man, strained, passionate, breathless and shouting with full force, natural Taiwanese Mandarin accent.",
+      "voice_sample": "可惡……完全卡死了！根本轉不動！",
+      "h3_voice": "an energetic passionate straining young Taiwanese male voice",
+      "edge_voice": "zh-TW-HsiaoChenNeural",
+      "sub_color": "&H0080FF80"
+    }
+  },
+  "masters": {
+    "control": "A cinematic wide 16:9 film still, shot on Kodak Vision3 500T film with an anamorphic lens. Inside the central control room of a Taiwanese oil refinery plant during a crisis. Glowing computer monitors displaying flashing red hazard schematics and warning banners, red emergency rotating beacon light casting dramatic crimson streaks across the metal consoles. No people. Clean cinematic composition, realistic industrial atmosphere. Absolutely NO readable text, NO words, NO watermark.",
+    "pipe_corridor": "A cinematic wide 16:9 film still, shot on Kodak Vision3 500T film with an anamorphic lens. Inside a heavy industrial refinery pipeline hall. Massive interconnected silver steel pipes, overhead catwalks, steam hissing faintly from high-pressure joints creating atmospheric mist. Prominently mounted on a central pipe is a huge heavy red cast-iron manual handwheel valve, flanked by an analog pressure gauge dial. Moody cinematic industrial lighting with cool shadows and warm safety cage lights. No people. Absolutely NO readable text, NO words, NO watermark."
+  },
+  "shots": [
+    {
+      "id": "S01",
+      "refs": ["chen"],
+      "scene": ["control", [0.0, 0.0, 1.0, 1.0]],
+      "dur": 7.0,
+      "line": {
+        "who": "chen",
+        "text": "警報！主管線超壓！八號閥門卡死了！",
+        "at": 0.5
+      },
+      "frame": "Medium shot waist-up: Chen the 32-year-old engineer with rectangular glasses and blue jumpsuit from <image1> clutches a radio walkie-talkie with trembling hands, staring in terror at flashing red control monitors in <image2>, shouting with urgent panic.",
+      "action": "The panicked engineer grips his walkie-talkie with both hands, shouting urgently while staring wide-eyed at the alarming monitors.",
+      "cut_in": 0.3,
+      "tail": 0.7
+    },
+    {
+      "id": "S02",
+      "refs": [],
+      "scene": ["pipe_corridor", [0.2, 0.1, 0.8, 0.9]],
+      "dur": 4.5,
+      "line": null,
+      "frame": "Close-up cinematic shot: A massive rugged red cast-iron handwheel valve mounted on an industrial steel pipeline from <image1>. A circular brass pressure gauge next to it has its needle trembling violently at the red maximum danger limit. Hissing white steam leaks from the pipe flange. Atmospheric dramatic lighting, water droplets condensing on metal. No people. No text, no watermark.",
+      "action": "Hissing white steam bursts in short rhythmic pulses from the flange joint while the pressure gauge needle vibrates violently in the danger zone.",
+      "cut_in": 0.3,
+      "tail": 0.7
+    },
+    {
+      "id": "S03",
+      "refs": ["qiang"],
+      "scene": ["pipe_corridor", [0.0, 0.0, 1.0, 1.0]],
+      "dur": 5.0,
+      "line": {
+        "who": "qiang",
+        "text": "動啊！給我動一下啊！",
+        "at": 0.5
+      },
+      "frame": "Medium shot: Ah Qiang the 25-year-old rookie operator with yellow hard hat from <image1> rushes forward and firmly grips the large red valve handwheel on the industrial pipe in <image2>, pulling with all his upper body strength, face straining intensely.",
+      "action": "The rookie operator lunges into the frame, grabbing the red handwheel with both hands and straining with all his might, grimacing with exertion.",
+      "cut_in": 0.3,
+      "tail": 0.7
+    },
+    {
+      "id": "S04",
+      "refs": ["qiang"],
+      "scene": ["pipe_corridor", [0.1, 0.1, 0.9, 0.9]],
+      "dur": 5.5,
+      "line": {
+        "who": "qiang",
+        "text": "可惡……卡死了！根本轉不動！",
+        "at": 0.5
+      },
+      "frame": "Tight close-up shot: Ah Qiang's face flushed deep red, sweat pouring down his temples, teeth clenched hard, veins bulging across his neck and forehead as he strains against the unyielding valve in <image2>, gasping desperately.",
+      "action": "The rookie operator grits his teeth in agony, sweat dripping from his chin as his shoulders heave and tremble under extreme physical effort.",
+      "cut_in": 0.3,
+      "tail": 0.7
+    },
+    {
+      "id": "S05",
+      "refs": ["chen"],
+      "scene": ["control", [0.0, 0.0, 1.0, 1.0]],
+      "dur": 6.0,
+      "line": {
+        "who": "chen",
+        "text": "阿強快撤！還有二十秒要爆了！",
+        "at": 0.5
+      },
+      "frame": "Medium close-up shot: Chen the engineer with glasses from <image1> screams desperately into his walkie-talkie in the red-lit control room from <image2>, face pale with terror as digital sirens flash across his face.",
+      "action": "The terrified engineer screams into his handheld radio, shaking his head urgently as flashing crimson lights sweep across his face.",
+      "cut_in": 0.3,
+      "tail": 0.7
+    },
+    {
+      "id": "S06",
+      "refs": ["li"],
+      "scene": ["pipe_corridor", [0.0, 0.0, 1.0, 1.0]],
+      "dur": 7.5,
+      "line": {
+        "who": "li",
+        "text": "撤什麼撤！在石化廠，沒老子轉不動的閥！",
+        "at": 0.5
+      },
+      "frame": "Low-angle heroic medium shot: Lao Li the 50-year-old plant veteran from <image1> strides through heavy steam fog in the industrial corridor from <image2>, carrying a heavy hollow steel extension sleeve over his shoulder and holding a shiny steel F-wrench in his hand, eyes blazing with fierce veteran resolve.",
+      "action": "The veteran operator kicks through the steam with powerful strides, holding up the F-wrench and sleeve pipe with commanding swagger, barking defiantly.",
+      "cut_in": 0.3,
+      "tail": 0.7
+    },
+    {
+      "id": "S07",
+      "refs": ["li"],
+      "scene": ["pipe_corridor", [0.2, 0.1, 0.8, 0.9]],
+      "dur": 4.5,
+      "line": null,
+      "frame": "Dynamic close-up shot: Lao Li skillfully hooks the dual parallel claws of the steel F-wrench firmly onto the outer circular rim of the massive RED valve handwheel on the pipeline in <image2>, then slides a hollow steel extension sleeve pipe over the F-wrench handle, locking it into an ultra-long leverage assembly. Sparks of determination in his eyes. Steam swirling.",
+      "action": "The veteran hooks the F-wrench jaws onto the rim of the red handwheel and slams the extension sleeve pipe onto its handle with solid precision as steam swirls past.",
+      "cut_in": 0.3,
+      "tail": 0.7
+    },
+    {
+      "id": "S08",
+      "refs": ["li"],
+      "scene": ["pipe_corridor", [0.1, 0.0, 0.9, 1.0]],
+      "dur": 6.0,
+      "line": {
+        "who": "li",
+        "text": "阿強！手搭上來！跟我一起轉！",
+        "at": 0.5
+      },
+      "frame": "Medium shot: In the steamy corridor from <image2>, the steel F-wrench is clamped tightly onto the outer rim of the massive round RED cast-iron valve handwheel on the pipe. Lao Li from <image1> firmly grips the long hollow extension pipe sleeved over the F-wrench handle, pointing commanding instructions to Ah Qiang with fiery leadership.",
+      "action": "The veteran grips the extension pipe sleeved onto the F-wrench clamped on the red wheel rim, turning his head to roar encouraging commands with wide eyes and absolute confidence.",
+      "cut_in": 0.3,
+      "tail": 0.7
+    },
+    {
+      "id": "S09",
+      "refs": ["qiang"],
+      "scene": ["pipe_corridor", [0.1, 0.0, 0.9, 1.0]],
+      "dur": 5.0,
+      "line": {
+        "who": "qiang",
+        "text": "是！李哥！轉爆它！",
+        "at": 0.5
+      },
+      "frame": "Medium close-up shot: Beside the identical massive round RED cast-iron valve handwheel with the steel F-wrench clamped on its outer rim in <image2>, Ah Qiang from <image1> steps up with fiery adrenaline, planting both gloved hands firmly onto the long extension pipe sleeved over the F-wrench, shouting with burning resolve.",
+      "action": "The young rookie's eyes light up with burning determination; he grips the extension pipe sleeved on the F-wrench with both hands, shouting his battle cry with a fierce nod.",
+      "cut_in": 0.3,
+      "tail": 0.7
+    },
+    {
+      "id": "S10",
+      "refs": ["li", "qiang"],
+      "scene": ["pipe_corridor", [0.0, 0.0, 1.0, 1.0]],
+      "dur": 7.0,
+      "line": {
+        "who": "li",
+        "text": "給我——轉過去啊啊啊！",
+        "at": 0.6
+      },
+      "frame": "Wide cinematic two-shot: Lao Li and Ah Qiang side-by-side at the massive round RED cast-iron valve handwheel on the industrial pipe from <image3>. The steel F-wrench is hooked tightly onto the handwheel's outer rim with the long steel extension sleeve extending outward. Both men throw their entire body weight downward onto the extension pipe, muscles bulging, screaming at the top of their lungs in unison amidst swirling steam mist.",
+      "action": "Both men haul down on the extension pipe sleeved onto the F-wrench clamped to the red wheel rim with violent explosive effort, bodies shaking, roaring furiously as steam violently clouds around them.",
+      "cut_in": 0.3,
+      "tail": 0.7
+    },
+    {
+      "id": "S11",
+      "refs": [],
+      "scene": ["pipe_corridor", [0.2, 0.1, 0.8, 0.9]],
+      "dur": 4.5,
+      "line": null,
+      "frame": "Close-up macro shot: The heavy red valve handwheel on the pipe in <image1> suddenly breaks free with a burst of metal flakes, violently rotating half a turn! Behind it, high-pressure steam violently roars out of the relief duct in a massive glorious white plume. No people. No text.",
+      "action": "The jammed valve wheel jerks violently and spins smoothly half a turn, unleashing a massive deafening jet of white steam from the relief exhaust.",
+      "cut_in": 0.3,
+      "tail": 0.7
+    },
+    {
+      "id": "S12",
+      "refs": ["li"],
+      "scene": ["pipe_corridor", [0.0, 0.0, 1.0, 1.0]],
+      "dur": 6.0,
+      "line": {
+        "who": "li",
+        "text": "小子……這就是力矩的力量！",
+        "at": 0.6
+      },
+      "frame": "Cinematic medium shot: In the pipeline corridor from <image2> where emergency lights have returned to normal calm green, Lao Li from <image1> sits resting against a steel stanchion, panting heavily, wiping sweat from his brow, grinning with warm proud veteran swagger.",
+      "action": "The veteran operator slumps against the pipe support, chest heaving with heavy breaths, smiling proudly as he chuckles and gives an approving thumbs-up.",
+      "cut_in": 0.3,
+      "tail": 0.7
+    },
+    {
+      "id": "S13",
+      "refs": ["qiang"],
+      "scene": ["pipe_corridor", [0.0, 0.0, 1.0, 1.0]],
+      "dur": 5.0,
+      "line": null,
+      "frame": "Cinematic medium close-up shot: Ah Qiang the 25-year-old rookie operator with yellow hard hat from <image1> sits leaning against a steel pipe in the green-lit corridor from <image2>, face flushed and sweaty with light grease smudges. He wipes his brow with the back of his gloved wrist, breathing a heavy sigh of relief, then turns to look toward Lao Li with bright glowing eyes full of pure awe, respect, and a radiant admiring smile.",
+      "action": "The young rookie operator wipes sweat from his forehead with the back of his hand, exhales deeply with a relieved chuckle, and turns his head with a radiant, deeply admiring smile full of awe.",
+      "cut_in": 0.3,
+      "tail": 0.7
+    }
+  ],
+  "music": {
+    "prompt": "epic cinematic action film score, purely instrumental, heroic soaring brass, driving orchestral percussion, heavy rock guitar riffs, pounding war drums, rising heroic tension exploding into triumphant brass fanfare. BPM 135, key D minor.",
+    "caption": "Genre: epic cinematic action film score, purely instrumental, heroic soaring brass, driving orchestral percussion, heavy rock guitar riffs, pounding war drums, rising heroic tension exploding into triumphant brass fanfare. BPM 135, key D minor.\nVocal: NONE. No singing, no humming, no choir.\nArrangement: brass section, epic taiko drums, distorted electric guitar, cello, triumphant orchestra.",
+    "seeds": [11, 47, 89]
+  },
+  "mix": {
+    "say_lead": 0.2,
+    "default_tail": 0.6,
+    "music_under_lines": 0.22,
+    "music_bed_rms": 0.035,
+    "target_lufs": -15.5
+  },
+  "ending": {
+    "closeups": ["S02", "S07", "S10", "S13"],
+    "header": "本片使用的 AI 工具（Google Colab 雲端生成）",
+    "card_dur": 3.0,
+    "title_dur": 3.5,
+    "cards": [
+      [
+        ["MiniMax H3", "影片生成（Colab G4）"],
+        ["Codex CLI", "分鏡首幀與角色定妝"],
+        ["MiniMax-Music3", "熱血配樂生成"]
+      ],
+      [
+        ["MiniMax H3", "角色原生台詞演繹"],
+        ["faster-whisper／BS-RoFormer", "語音辨識／配樂分離"],
+        ["本片畫面與聲音全部由 AI 生成", ""]
+      ]
+    ]
+  }
+}
